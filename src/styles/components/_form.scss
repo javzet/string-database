@@ -1,0 +1,308 @@
+:root {
+  --fz: 14px;
+  font-size: var(--fz);
+  @media (min-width: 400px) {
+    --fz: 15px;
+  }
+  @media (min-width: 500px) {
+    --fz: 16px;
+  }
+  @media (max-width: 399px) {
+    --fz: 13px;
+  }
+  @media (max-width: 350px) {
+    --fz: 12px;
+  }
+}
+
+$clr-primary: #577590;
+$clr-secondary: #efefef;
+$clr-success: #90be6d;
+$clr-info: #43aa8b;
+$clr-error: #f94144;
+$clr-danger: #f3722c;
+$clr-danger-md: #f8961e;
+$clr-warning: #f9c74f;
+$clr-main: #0b81be;
+
+$clr-black: #000000;
+$clr-background: #f7f7f7;
+
+body {
+  font-family: 'Roboto', sans-serif;
+  background-color: #ffffff;
+}
+
+.container,
+.header-contaniner {
+  margin-left: auto;
+  margin-right: auto;
+  width: min(1200px, 88%);
+}
+
+.container {
+  margin-top: 2rem;
+  margin-bottom: 2rem;
+}
+
+.header-contaniner {
+  display: flex;
+  align-items: center;
+  padding: 0.2rem 0;
+}
+
+header {
+  background: $clr-secondary;
+}
+
+header img {
+  width: 95px;
+  display: block;
+  margin-right: 1rem;
+  @media (max-width: 450px) {
+    width: 85px;
+  }
+  @media (max-width: 330px) {
+    width: 75px;
+  }
+}
+
+header h1 {
+  font-size: 2.4rem;
+  @media (max-width: 450px) {
+    font-size: 2rem;
+  }
+  @media (max-width: 330px) {
+    font-size: 1.6rem;
+  }
+}
+
+.text-center {
+  text-align: center !important;
+}
+
+.cursor-pointer {
+  cursor: pointer;
+}
+
+.w95 {
+  width: min(550px, 95%);
+}
+.w90 {
+  width: min(500px, 90%);
+}
+.w85 {
+  width: min(450px, 95%);
+}
+
+.btn {
+  border: 0;
+  outline: none;
+  cursor: pointer;
+  padding: 0.8rem 2.2rem;
+  font-size: 1rem;
+  border-radius: 0.2rem;
+  transition: all ease 0.3s;
+  position: relative;
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: transparent;
+    z-index: -1;
+    box-shadow: 0px 1px 6px 2px rgba(#000, 0.2);
+    opacity: 0;
+    transition: all 0.3s;
+  }
+  &:hover::before {
+    opacity: 1;
+  }
+}
+
+.btn-main {
+  background: $clr-main;
+  &:hover {
+    background: darken($color: $clr-main, $amount: 10%);
+  }
+}
+
+.btn-secondary {
+  background: lighten($color: $clr-primary, $amount: 40%);
+  &:hover {
+    background: lighten($color: $clr-primary, $amount: 15%);
+  }
+}
+
+.btn-primary {
+  background: darken($clr-success, 10%);
+  color: $clr-black;
+
+  &:hover {
+    background: $clr-success;
+  }
+}
+
+.btn-rounded {
+  border-radius: 999999px;
+  &::before {
+    border-radius: 99999px;
+  }
+}
+
+.btn-block {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+form {
+  margin: 3rem 0;
+}
+
+.form-header {
+  color: #333;
+  text-align: center;
+  @media (min-width: 470px) {
+    text-align: left;
+  }
+}
+
+.form-content {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.form-content > * {
+  flex: 1 1 50%;
+}
+
+.form-gap {
+  display: flex;
+}
+
+.form-group {
+  display: block;
+  width: 96%;
+  margin: 1.5rem auto;
+  background: $clr-background;
+  padding: 1.5rem 1rem;
+  border-radius: 0.6rem;
+  @media (min-width: 550px) {
+    padding: 2rem 2.5rem;
+  }
+  @media (min-width: 1024px) {
+    padding: 2rem 3rem;
+  }
+}
+
+.form-group > * + * {
+  margin-top: 1rem;
+}
+
+.form-group p {
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: $clr-primary;
+}
+
+.form-control {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  * + * {
+    margin-left: 0.8rem;
+  }
+  input {
+    padding: 0.6rem 1.2rem;
+    font-size: 1rem;
+    flex: 1 1 62%;
+    border-radius: 0.2rem;
+    outline: none;
+    border: 1.5px $clr-primary solid;
+  }
+  label {
+    flex: 38%;
+  }
+  @media (max-width: 350px) {
+    flex-wrap: wrap;
+    * + * {
+      margin-left: 0rem;
+    }
+    label {
+      flex: 1 1 100%;
+      padding: 0.6rem 1.2rem;
+      &::after {
+        content: ':';
+      }
+    }
+    input {
+      flex: 1 1 100%;
+    }
+  }
+}
+
+.asignaturas {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.asignaturas > * {
+  flex: 1 1 50%;
+}
+
+.asignaturas-agregadas {
+  margin: 3rem 0;
+  padding: 0 2rem;
+  @media (max-width: 909px) {
+    padding: 0;
+  }
+}
+
+.asignaturas-grid {
+  margin: 1.5rem auto;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.asignaturas-grid > * + * {
+  margin-top: 0.2rem;
+}
+
+.asignaturas-grid .asignatura-header {
+  background: $clr-primary;
+  color: #ffffff;
+}
+
+.asignatura {
+  padding: 0.6rem 0.8rem;
+  text-align: center;
+  display: flex;
+  font-size: 0.9rem;
+  width: 100%;
+  align-items: center;
+  border-radius: 0.2rem;
+  background-color: $clr-secondary;
+}
+
+.asignatura > * {
+  flex: 1 1 20%;
+}
+
+.asignatura .str {
+  flex: 1 1 100% !important;
+}
+
+.full-string,
+.use-reg {
+  text-align: center;
+  margin-top: 0.3rem;
+  margin-bottom: 2rem;
+  font-size: 0.8rem;
+  color: #aaa;
+  span {
+    font-weight: bold;
+  }
+}
