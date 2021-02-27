@@ -1,4 +1,4 @@
-class GetString {
+export class GetString {
   constructor(data) {
     this.data = data;
   }
@@ -67,5 +67,3 @@ class GetString {
     return str;
   }
 }
-
-module.exports = { GetString };
