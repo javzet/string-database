@@ -1,5 +1,5 @@
 export async function sendData(general) {
-  const res = await fetch('https://ogla-db.herokuapp.com/api/v1/', {
+  const res = await fetch('http://localhost:5500/api/v1/', {
     headers: {
       'Content-type': 'application/json',
     },

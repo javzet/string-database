@@ -17,11 +17,22 @@ export const CoursesForm = () => {
   });
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log(formValues);
+    const campos = [
+      e.target.idAsignatura.value,
+      e.target.ciclo.value,
+      e.target.calificacion.value,
+      e.target.idTipoAsignatura.value,
+      e.target.creditos.value,
+    ];
+    const validar = campos.reduce((total, campo) => {
+      return total * campo.length;
+    });
+    if (validar < 5) {
+      return;
+    }
     const str = new GetString([formValues]).getCoursesString();
     setStrCourses([...strCourses, str]);
     setCourses([...courses, { ...formValues, str }]);
-    sessionStorage.setItem('courses', JSON.stringify(courses));
     reset();
   };
   return (

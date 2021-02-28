@@ -381,17 +381,25 @@ form {
   flex: 1 1 100% !important;
 }
 
-.full-string,
-.use-reg {
-  text-align: center;
+.datos-generados {
   margin-top: 0.3rem;
   margin-bottom: 2rem;
   font-size: 0.8rem;
   color: #aaa;
 }
-.full-string span,
-.use-reg span {
+
+.datos-generados p span {
   font-weight: bold;
+}
+
+.datos-generados .use-reg a {
+  font-weight: bold;
+  text-decoration: none;
+  transition: all 0.3s;
+  cursor: pointer;
+}
+.datos-generados .use-reg a:hover {
+  color: #333;
 }
 
 /*# sourceMappingURL=index.css.map */

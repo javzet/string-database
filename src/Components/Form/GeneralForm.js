@@ -44,9 +44,7 @@ export const GeneralForm = () => {
     setGeneralData(formValues);
     const fnS = new GetString([formValues]).getGeneralString();
     setStr(fnS);
-    console.log(fnS);
     reset();
-    sessionStorage.setItem('generalString', [JSON.stringify(formValues)]);
   };
   const camposSec8 = [
     {

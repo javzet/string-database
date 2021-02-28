@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import { AsignaturasGrid, CadenasGrid } from './Components/AsignaturasGrid';
+import { CadenaGenerada } from './Components/CadenaGenerada';
 import { FormContext as DataContext } from './Components/Context/FormContext';
 import { CoursesForm } from './Components/Form/CoursesForm';
 import { GeneralForm } from './Components/Form/GeneralForm';
@@ -13,20 +14,36 @@ export const App = () => {
   const [viewStrs, setViewStrs] = useState(false);
   const [fullStr, setFullStr] = useState('');
   const getDataFromStorage = () => {
-    setCourses(JSON.parse(sessionStorage.getItem('courses')) || []);
-    setGeneralData(JSON.parse(sessionStorage.getItem('generalString')) || []);
+    setCourses(JSON.parse(localStorage.getItem('courses')) || []);
+    setGeneralData(JSON.parse(sessionStorage.getItem('generalData')) || []);
   };
+
+  const [resp, setResp] = useState({});
+
   const handleSend = async () => {
     getDataFromStorage();
+    if (generalData.length < 1) {
+      console.log('Por favor agrege datos primero');
+      return;
+    }
     const nuevoStr = new GetString([generalData]).getGeneralString();
     const fullStrC = new GetString().getCompleteString(courses, nuevoStr);
     setFullStr(fullStrC);
-    const resp = await sendData(generalData);
-    console.log(resp);
+    const cour = JSON.stringify(courses);
+    const completeData = { ...generalData, courses: cour, cadena: fullStrC };
+    console.log(completeData);
+    const resp = await sendData(completeData);
+    setResp(resp);
   };
   useEffect(() => {
     getDataFromStorage();
   }, []);
+  useEffect(() => {
+    sessionStorage.setItem('generalData', JSON.stringify(generalData));
+  }, [generalData]);
+  useEffect(() => {
+    localStorage.setItem('courses', JSON.stringify(courses));
+  }, [courses]);
   return (
     <>
       <header>
@@ -62,14 +79,7 @@ export const App = () => {
             </div>
           </div>
           {fullStr !== '' && (
-            <>
-              <p className="full-string">
-                <span>Cadena generada:</span> {fullStr}
-              </p>
-              <p className="use-reg">
-                <span>Datos registrados correctamente </span>
-              </p>
-            </>
+            <CadenaGenerada fullStr={fullStr} resp={resp} setResp={setResp} />
           )}
           <button
             className="btn btn-primary btn-rounded btn-block w95"
